@@ -1,5 +1,15 @@
 "use client";
-import { Plan } from "./page";
+
+export type Plan = {
+  name: string;
+  price: string;
+  period: string;
+  features: string[];
+  duration: string;
+  type: string;
+  color: string;
+  popular?: boolean;
+};
 
 export const plans: Plan[] = [
   {
