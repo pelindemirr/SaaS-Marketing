@@ -13,7 +13,12 @@ const ThemeContext = createContext<ThemeContextType | undefined>(undefined);
 export const useTheme = () => {
   const context = useContext(ThemeContext);
   if (!context) {
-    throw new Error("useTheme must be used within a ThemeProvider");
+    // Fallback değerler ile güvenli hale getir
+    console.warn("useTheme must be used within a ThemeProvider");
+    return {
+      theme: "dark" as ThemeMode,
+      toggleTheme: () => {},
+    };
   }
   return context;
 };
@@ -21,7 +26,25 @@ export const useTheme = () => {
 export const ThemeProvider: React.FC<{ children: React.ReactNode }> = ({
   children,
 }) => {
-  const [theme, setTheme] = useState<ThemeMode>("dark");
+  const [theme, setTheme] = useState<ThemeMode>(() => {
+    // SSR'da varsayılan tema
+    if (typeof window === "undefined") {
+      return "dark";
+    }
+
+    // Client-side'da localStorage'dan tema al
+    const savedTheme = localStorage.getItem("theme") as ThemeMode;
+    if (savedTheme && (savedTheme === "dark" || savedTheme === "light")) {
+      return savedTheme;
+    }
+
+    // Varsayılan olarak sistem teması
+    const systemTheme = window.matchMedia("(prefers-color-scheme: dark)")
+      .matches
+      ? "dark"
+      : "light";
+    return systemTheme;
+  });
 
   // Tema değiştirme fonksiyonu
   const toggleTheme = () => {
@@ -32,35 +55,22 @@ export const ThemeProvider: React.FC<{ children: React.ReactNode }> = ({
     }
   };
 
-  // Sayfa yüklendiğinde localStorage'dan tema al
-  useEffect(() => {
-    if (typeof window !== "undefined") {
-      const savedTheme = localStorage.getItem("theme") as ThemeMode;
-      if (savedTheme && (savedTheme === "dark" || savedTheme === "light")) {
-        setTheme(savedTheme);
-      } else {
-        // Varsayılan olarak sistem teması
-        const systemTheme = window.matchMedia("(prefers-color-scheme: dark)")
-          .matches
-          ? "dark"
-          : "light";
-        setTheme(systemTheme);
-      }
-    }
-  }, []);
-
   // CSS değişkenlerini güncelle
   useEffect(() => {
     if (typeof window !== "undefined") {
       const root = document.documentElement;
+      const body = document.body;
       const cssVariables = getCSSVariables(theme);
 
       Object.entries(cssVariables).forEach(([property, value]) => {
         root.style.setProperty(property, value);
       });
 
-      // Body sınıfını güncelle
-      document.body.className = theme;
+      // HTML ve Body sınıfını güncelle
+      root.className = theme;
+      body.className = `${body.className
+        .replace(/\b(light|dark)\b/g, "")
+        .trim()} ${theme}`.trim();
     }
   }, [theme]);
 
