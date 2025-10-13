@@ -38,6 +38,19 @@ body {
   transition: background-color 0.3s ease, color 0.3s ease;
 }
 
+/* Tema geçişi sırasında flash'i önle */
+html {
+  color-scheme: dark;
+}
+
+html.light {
+  color-scheme: light;
+}
+
+html.dark {
+  color-scheme: dark;
+}
+
 
 /* Hover effects for navigation */
 .nav-link {
