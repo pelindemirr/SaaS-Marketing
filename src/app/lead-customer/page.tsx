@@ -2,94 +2,82 @@
 
 import React from "react";
 import Image from "next/image";
-import headerImage from '../../assets/support/header.png';
-import qualityImage from '../../assets/support/quality.png';
-import reletionsImage from '../../assets/support/relations.png';
-import scabilityImage from '../../assets/support/scability.png';
-import satisfactionImage from '../../assets/support/satisfaction.png';
+import headerImage from '../../assets/lead-customer/header.png';
+import togetherImage from '../../assets/lead-customer/together.png';
+import trendImage from '../../assets/lead-customer/trend.png';
+import scabilityImage from '../../assets/lead-customer/scability.png';
+import meetImage from '../../assets/lead-customer/meet.png';
 
 const SolutionsPage: React.FC = () => {
   return (
     <section className="w-full bg-[var(--bg-primary)] py-20 px-6 transition-colors duration-300">
       {/* Üst kısım */}
       <div className="max-w-6xl mx-auto flex flex-col md:flex-row items-center gap-12">
-        {/* Sol taraf */}
+        {/* Sol taraf (İçerik güncellendi) */}
         <div className="flex-1 text-center md:text-left">
           <p className="text-sm font-semibold text-[var(--text-secondary)] mb-3 tracking-wide uppercase">
-            Daha İyi Müşteri Deneyimi ve Bağlılığı
+            Müşteri Adayı Oluşturma
           </p>
           <h1 className="text-4xl font-extrabold text-[var(--text-primary)] leading-snug">
-            Daha güçlü müşteri ilişkileri <br /> için daha fazla zaman ayırın
+            Müşteri adaylarını daha hızlı <br /> dönüştürün ve etkileşim kurun
           </h1>
           <p className="mt-4 text-[var(--text-secondary)] max-w-md">
-            Etkileşimli ve zamanında yapılan görüşmelerle müşterilerinizin
-            işletmenize sadık kalmasını ve en büyük marka elçileriniz olmasını
-            sağlayın. Her kanalda, her an.
+            Bir daha asla fırsatları kaçırmayın. Gelen ve giden tüm kanallarınızı bağlayarak tüm görüşmeleri tek bir yerden yönetin, böylece potansiyel müşterileriniz hiç beklemesin.
           </p>
           <button className="mt-6 btn-primary px-6 py-3 rounded-lg font-semibold">
-            Keşfet
+            İncele
           </button>
         </div>
 
-        {/* Sağ taraf */}
+        {/* Sağ taraf (Değişiklik yok) */}
         <div className="flex-1">
-          <div className="flex-1">
-            {/* - `relative` ekledik, çünkü `fill` prop'u bunu gerektirir.
-    - `overflow-hidden` ekledik, böylece resmin köşeleri de yuvarlatılmış olur.
-    - `flex items-center...` kaldırdık, çünkü artık resim tüm alanı kaplayacak.
-  */}
-            <div className="relative w-full h-72 bg-[var(--bg-card)] rounded-2xl border border-[var(--border-primary)] transition-colors duration-300 overflow-hidden shadow-xl">
-              <Image
-                src={headerImage}
-                alt={"Header İllüstrasyonu"}
-                fill // Ebeveyn div'i (h-72 olan) tamamen doldurur
-                style={{ objectFit: 'cover' }} // 'cover' orantıyı koruyarak kaplar
-                sizes="(max-width: 768px) 100vw, 50vw"
-              />
-            </div>
+          <div className="relative w-full h-72 bg-[var(--bg-card)] rounded-2xl border border-[var(--border-primary)] transition-colors duration-300 overflow-hidden shadow-xl">
+            <Image
+              src={headerImage}
+              alt={"Header İllüstrasyonu"}
+              fill
+              style={{ objectFit: 'cover' }}
+              sizes="(max-width: 768px) 100vw, 50vw"
+            />
           </div>
         </div>
       </div>
 
-      {/* Alt kısım (3 özellik sütunu) */}
-      <div className="max-w-6xl mx-auto mt-20 grid md:grid-cols-3 gap-10 text-center md:text-left">
-        {[
-          {
-            icon: "👥",
-            title: "Müşteri Bağlantıları",
-            text: "WhatsApp, e-posta, canlı sohbet, SMS, sosyal medya üzerinden müşterilerinizle değerli anlar yaratın - hepsi Trengo'dan.",
-            link: "Demo talep et →",
-          },
-          {
-            icon: "🧭",
-            title: "Sezgisel Müşteri Yolculukları",
-            text: "Karmaşık soruları yanıtlamaktan yeniden satın almalarına veya yenilemelerine yardımcı olmaya kadar yolun her adımında yanlarında olduğunuzu kanıtlayın.",
-            link: "Platformu keşfet →",
-          },
-          {
-            icon: "📈",
-            title: "Etkileşim Analizleri",
-            text: "İş teklifinizi iyileştirmek, müşteri geri bildirimlerine öncelik vermek ve genel stratejinizi ayarlamak için görüşme verilerini kullanın.",
-            link: "Fiyatları incele →",
-          },
-        ].map((item) => (
-          <div
-            key={item.title}
-            className="transition-colors duration-300 hover:opacity-90"
-          >
-            <div className="text-4xl mb-3">{item.icon}</div>
-            <h3 className="text-lg font-semibold text-[var(--text-primary)] mb-2">
-              {item.title}
-            </h3>
-            <p className="text-[var(--text-secondary)] mb-3">{item.text}</p>
-            <a
-              href="#"
-              className="font-semibold text-[var(--accent-primary)] hover:text-[var(--accent-hover)] transition"
-            >
-              {item.link}
-            </a>
-          </div>
-        ))}
+      {/* Alt kısım (3 özellik sütunu - İçerik güncellendi) */}
+      <div className="max-w-6xl mx-auto mt-20">
+        <div className="grid md:grid-cols-3 gap-10 text-center md:text-left">
+          {[
+            {
+              icon: "🤖", // Robot ikonu
+              title: "Yanıt sürelerini azaltın",
+              text: "Gelen müşteri taleplerine bir dakikadan daha kısa sürede otomatik olarak yanıt verin.",
+              link: "Demo talep et >",
+            },
+            {
+              icon: "👤", // Atama ikonu
+              title: "Müşteri adaylarını anında atayın",
+              text: "Gelen müşteri adaylarını manuel yetkilendirme ve yönlendirme olmadan doğru kişiye atayın.",
+              link: "Platformu keşfedin >",
+            },
+            {
+              icon: "⚡️", // Proaktif iletişim ikonu
+              title: "Proaktif iletişim kurun",
+              text: "Geçmiş veriler ve otomatik yanıtlarla müşteri ihtiyaçlarının bir adım önünde olun.",
+              link: "Fiyatları inceleyin >",
+            },
+          ].map((item) => (
+            <div key={item.title}>
+              <div className="text-4xl mb-3">{item.icon}</div>
+              <h3 className="text-lg font-semibold text-[var(--text-primary)] mb-2">
+                {item.title}
+              </h3>
+              <p className="text-[var(--text-secondary)] mb-3">{item.text}</p>
+              <a href="#" className="font-semibold text-[var(--accent-primary)] hover:text-[var(--accent-hover)] transition">
+                {item.link}
+              </a>
+            </div>
+          ))}
+        </div>
       </div>
 
       {/* Koyu mavi alt kısım */}
@@ -101,28 +89,28 @@ const SolutionsPage: React.FC = () => {
         <div className="grid flex gap-8">
           {[
             {
-              title: "Kalite veya hızdan ödün vermeyin",
-              desc: "Gelen sıkça sorulan soruların %50'ye kadarını otomatikleştirin, böylece ekibiniz müşterilerinizin daha karmaşık sorularına ve ihtiyaçlarına odaklanabilir.",
-              button: "Buradan başlayın",
-              image: qualityImage,
+              title: "Birlikte çalışın, daha hızlı para kazanın",
+              desc: "Müşteri adaylarınızı, ekibinizle iş birliği yaparak ve onayları doğrudan Trengo'dan yöneterek hızla dönüştürün.",
+              button: "Bugün başlayın >",
+              image: togetherImage, // Bu görseli kendi görselinizle değiştirebilirsiniz
             },
             {
-              title: "Müşteri memnuniyetini yüksek, ekip moralini daha yüksek tutun",
-              desc: "Görüşme sayısı, yanıt süresi ve müşteri memnuniyeti gibi temel performans göstergelerini sektör ölçütlerine göre takip edin.",
-              button: "Şimdi başla",
-              image: satisfactionImage,
+              title: "Etkili görüşmeler için zaman yaratın",
+              desc: "Tekrarlayan rezervasyon ve ödeme görüşmelerinin otomasyonla ilerlemesini sağlayın. Böylece satış ekibiniz yüksek değerli anlaşmalara ve kusursuz hizmete daha fazla zaman ayırabilir.",
+              button: "Deneyin >",
+              image: meetImage, // Bu görseli kendi görselinizle değiştirebilirsiniz
             },
             {
-              title: "Gelir getiren ilişkiler kurun",
-              desc: "Satın alma geçmişlerine dayanarak müşterilerinize yaklaşan promosyonlar ve teklifler hakkında proaktif olarak bilgi vermek için kişiselleştirilmiş mesajlar kullanın.",
-              button: "Nasıl olduğunu keşfedin",
-              image: reletionsImage,
+              title: "Trendleri kârınızı etkilemeden önce tespit edin",
+              desc: "Trengo'daki veri zekası, kanal performansınızı yakından izlemenize yardımcı olur ve satış hattınızın asla boş kalmamasını sağlar.",
+              button: "Göz atın >",
+              image: trendImage, // Bu görseli kendi görselinizle değiştirebilirsiniz
             },
             {
-              title: "Yapay zeka ve otomasyon ile müşteri deneyiminizi ölçeklendirin",
-              desc: "Büyümenizin temel taşı olarak müşteri etkileşimini benimseyin; işinizi ilerletmek için görüşmeleri, ekibinizin müşteri memnuniyetine odaklanmasını sağlamak için otomasyonu kullanın.",
-              button: "Demo talep et",
-              image: scabilityImage,
+              title: "Yapay zeka ve otomasyon ile müşteri adayı oluşturmayı ölçeklendirin",
+              desc: "Rezervasyonlar ve satın alımlar gibi dönüşümlerin akıcı kalmasını sağlayarak ürününüze olan ilgiyi artırın. Ekibiniz nitelikli müşteri adaylarına odaklanabilir.",
+              button: "Kişiselleştirilmiş demo alın >",
+              image: scabilityImage, // Bu görseli kendi görselinizle değiştirebilirsiniz
             },
           ].map((item, index) => {
             // Görselin sol tarafta mı sağ tarafta mı olacağını belirle
