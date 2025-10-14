@@ -122,7 +122,7 @@ const SolutionsPage: React.FC = () => {
               title: "Yapay zeka ve otomasyon ile müşteri deneyiminizi ölçeklendirin",
               desc: "Büyümenizin temel taşı olarak müşteri etkileşimini benimseyin; işinizi ilerletmek için görüşmeleri, ekibinizin müşteri memnuniyetine odaklanmasını sağlamak için otomasyonu kullanın.",
               button: "Demo talep et",
-              image: qualityImage,
+              image: scabilityImage,
             },
           ].map((item, index) => {
             // Görselin sol tarafta mı sağ tarafta mı olacağını belirle
@@ -135,7 +135,7 @@ const SolutionsPage: React.FC = () => {
                 // 1. `gap` değeri artırıldı (örn: gap-12).
                 // 2. Dikey olarak ortalamak için `items-center` eklendi.
                 // 3. Gereksiz `flex` sınıfları kaldırıldı.
-                className="grid grid-cols-1 md:grid-cols-1 p-8 items-center"
+                className="grid grid-cols-1 p-8 items-center"
               >
                 <div className="flex w-full justify-between flex-col md:flex-row gap-8 md:gap-12">
                 {isImageOnLeft && (
