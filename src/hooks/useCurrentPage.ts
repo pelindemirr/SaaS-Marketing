@@ -16,6 +16,7 @@ export const useCurrentPage = () => {
   if (pathname.includes("/pricing") || pathname.includes("/home"))
     return "pricing";
   if (pathname.includes("/support")) return "support";
+  if (pathname.includes("/lead-customer")) return "lead-customer";
   if (pathname.includes("/contact")) return "contact";
 
   return "home"; // default
