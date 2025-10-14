@@ -1,6 +1,12 @@
 "use client";
 
 import React from "react";
+import Image from "next/image";
+import headerImage from '../../assets/support/header.png';
+import qualityImage from '../../assets/support/quality.png';
+import reletionsImage from '../../assets/support/relations.png';
+import scabilityImage from '../../assets/support/scability.png';
+import satisfactionImage from '../../assets/support/satisfaction.png';
 
 const SolutionsPage: React.FC = () => {
   return (
@@ -27,18 +33,21 @@ const SolutionsPage: React.FC = () => {
 
         {/* Sağ taraf */}
         <div className="flex-1">
-          <div className="w-full h-72 bg-[var(--bg-card)] rounded-2xl flex items-center justify-center text-[var(--text-secondary)] border border-[var(--border-primary)] transition-colors duration-300">
-            <span>İllüstrasyon / Görsel</span>
+          <div className="flex-1">
+            {/* - `relative` ekledik, çünkü `fill` prop'u bunu gerektirir.
+    - `overflow-hidden` ekledik, böylece resmin köşeleri de yuvarlatılmış olur.
+    - `flex items-center...` kaldırdık, çünkü artık resim tüm alanı kaplayacak.
+  */}
+            <div className="relative w-full h-72 bg-[var(--bg-card)] rounded-2xl border border-[var(--border-primary)] transition-colors duration-300 overflow-hidden shadow-xl">
+              <Image
+                src={headerImage}
+                alt={"Header İllüstrasyonu"}
+                fill // Ebeveyn div'i (h-72 olan) tamamen doldurur
+                style={{ objectFit: 'cover' }} // 'cover' orantıyı koruyarak kaplar
+                sizes="(max-width: 768px) 100vw, 50vw"
+              />
+            </div>
           </div>
-          <p className="text-[var(--text-secondary)] text-sm mt-4 text-center md:text-left">
-            Dünya çapında 3.000'den fazla müşterinin güvendiği!{" "}
-            <a
-              href="#"
-              className="text-[var(--accent-primary)] hover:text-[var(--accent-hover)] transition"
-            >
-              Diğerlerinden öğrenin
-            </a>
-          </p>
         </div>
       </div>
 
@@ -89,42 +98,83 @@ const SolutionsPage: React.FC = () => {
           Mükemmel müşteri etkileşimi <br /> bir konuşmayla başlar
         </h2>
 
-        <div className="grid md:grid-cols-2 gap-8">
+        <div className="grid flex gap-8">
           {[
             {
               title: "Kalite veya hızdan ödün vermeyin",
               desc: "Gelen sıkça sorulan soruların %50'ye kadarını otomatikleştirin, böylece ekibiniz müşterilerinizin daha karmaşık sorularına ve ihtiyaçlarına odaklanabilir.",
               button: "Buradan başlayın",
+              image: qualityImage,
             },
             {
               title: "Müşteri memnuniyetini yüksek, ekip moralini daha yüksek tutun",
               desc: "Görüşme sayısı, yanıt süresi ve müşteri memnuniyeti gibi temel performans göstergelerini sektör ölçütlerine göre takip edin.",
               button: "Şimdi başla",
+              image: satisfactionImage,
             },
             {
               title: "Gelir getiren ilişkiler kurun",
               desc: "Satın alma geçmişlerine dayanarak müşterilerinize yaklaşan promosyonlar ve teklifler hakkında proaktif olarak bilgi vermek için kişiselleştirilmiş mesajlar kullanın.",
               button: "Nasıl olduğunu keşfedin",
+              image: reletionsImage,
             },
             {
               title: "Yapay zeka ve otomasyon ile müşteri deneyiminizi ölçeklendirin",
               desc: "Büyümenizin temel taşı olarak müşteri etkileşimini benimseyin; işinizi ilerletmek için görüşmeleri, ekibinizin müşteri memnuniyetine odaklanmasını sağlamak için otomasyonu kullanın.",
               button: "Demo talep et",
+              image: qualityImage,
             },
-          ].map((item) => (
-            <div
-              key={item.title}
-              className="bg-[var(--bg-primary)] p-8 rounded-2xl border border-[var(--border-primary)] shadow-md transition hover:shadow-lg"
-            >
-              <h3 className="text-xl font-semibold text-[var(--text-primary)] mb-3">
-                {item.title}
-              </h3>
-              <p className="text-[var(--text-secondary)] mb-6">{item.desc}</p>
-              <button className="btn-primary px-5 py-2 rounded-lg font-semibold">
-                {item.button}
-              </button>
-            </div>
-          ))}
+          ].map((item, index) => {
+            // Görselin sol tarafta mı sağ tarafta mı olacağını belirle
+            const isImageOnLeft = index % 2 === 0; // Çift indexlilerde görsel solda, tek indexlilerde sağda olacak
+
+            return (
+              <div
+                key={item.title}
+                // *** DEĞİŞİKLİKLER BURADA ***
+                // 1. `gap` değeri artırıldı (örn: gap-12).
+                // 2. Dikey olarak ortalamak için `items-center` eklendi.
+                // 3. Gereksiz `flex` sınıfları kaldırıldı.
+                className="grid grid-cols-1 md:grid-cols-1 p-8 items-center"
+              >
+                <div className="flex w-full justify-between flex-col md:flex-row gap-8 md:gap-12">
+                {isImageOnLeft && (
+                  <div className="relative w-64 h-64 rounded-full flex-shrink-0 overflow-hidden shadow-xl mx-auto md:mx-0">
+                    <Image
+                      src={item.image}
+                      alt={item.title + " İllüstrasyonu"}
+                      fill
+                      style={{ objectFit: 'cover' }}
+                      sizes="(max-width: 768px) 100vw, 33vw"
+                    />
+                  </div>
+                )}
+
+                <div className="bg-[var(--bg-card)] p-6 rounded-2xl border border-[var(--border-primary)] shadow-lg flex flex-col justify-center hover:shadow-xl transition-shadow">
+                  <h3 className="text-xl font-semibold text-[var(--text-primary)] mb-3">
+                    {item.title}
+                  </h3>
+                  <p className="text-[var(--text-secondary)] mb-6">{item.desc}</p>
+                  <button className="btn-primary px-5 py-2 rounded-lg font-semibold self-start">
+                    {item.button}
+                  </button>
+                </div>
+
+                {!isImageOnLeft && (
+                  <div className="relative w-64 h-64 rounded-full flex-shrink-0 overflow-hidden shadow-xl mx-auto md:mx-0">
+                    <Image
+                      src={item.image}
+                      alt={item.title + " İllüstrasyonu"}
+                      fill
+                      style={{ objectFit: 'cover', objectPosition: 'center' }}
+                      sizes="(max-width: 768px) 100vw, 33vw"
+                    />
+                  </div>
+                )}
+                </div>
+              </div>
+            );
+          })}
         </div>
       </div>
 
