@@ -93,9 +93,9 @@ const SolutionsPage: React.FC = () => {
       </div>
 
       {/* Koyu mavi alt kısım */}
-      <div className="mt-24 bg-[var(--bg-card)] py-20 px-6 rounded-[2rem] max-w-6xl mx-auto shadow-xl border border-[var(--border-primary)]">
-        <h2 className="text-3xl font-bold text-center text-[var(--text-primary)] mb-12">
-          Mükemmel müşteri etkileşimi <br /> bir konuşmayla başlar
+      <div className="mt-24 bg-[var(--bg-card)] pt-10 pb-20 px-15 rounded-[2rem] max-w-6xl mx-auto shadow-xl border border-[var(--border-primary)]">
+        <h2 className="text-[var(--text-primary)] text-4xl font-bold text-center mb-12 [text-shadow:2px_2px_4px_rgba(0,0,0,0.3)]">
+          Mükemmel Müşteri Etkileşimi <br /> Bir Konuşmayla Başlar
         </h2>
 
         <div className="grid flex gap-8">
@@ -131,26 +131,33 @@ const SolutionsPage: React.FC = () => {
             return (
               <div
                 key={item.title}
-                // *** DEĞİŞİKLİKLER BURADA ***
-                // 1. `gap` değeri artırıldı (örn: gap-12).
-                // 2. Dikey olarak ortalamak için `items-center` eklendi.
-                // 3. Gereksiz `flex` sınıfları kaldırıldı.
-                className="grid grid-cols-1 p-8 items-center"
+                // 1. Grid'i 5 sütuna bölüyoruz (md:grid-cols-5).
+                //    Bu, alan dağılımında bize daha fazla esneklik sağlar.
+                // 2. Boşluğu biraz daha artırabiliriz (gap-20).
+                className="grid grid-cols-1 md:grid-cols-10 items-center gap-20"
               >
-                <div className="flex w-full justify-between flex-col md:flex-row gap-8 md:gap-12">
-                {isImageOnLeft && (
-                  <div className="relative w-64 h-64 rounded-full flex-shrink-0 overflow-hidden shadow-xl mx-auto md:mx-0">
-                    <Image
-                      src={item.image}
-                      alt={item.title + " İllüstrasyonu"}
-                      fill
-                      style={{ objectFit: 'cover' }}
-                      sizes="(max-width: 768px) 100vw, 33vw"
-                    />
-                  </div>
-                )}
+                {/* Görsel Konteyneri */}
+                <div
+                  className={`
+                    relative w-96 h-96 rounded-full flex-shrink-0 overflow-hidden shadow-xl
+                    mx-auto 
+                    md:col-span-5 
+                    ${!isImageOnLeft ? 'md:order-last md:justify-self-end' : 'md:justify-self-start'}
+                  `}
+                >
+                  <Image
+                    src={item.image}
+                    alt={item.title + " İllüstrasyonu"}
+                    fill
+                    style={{ objectFit: 'cover' }}
+                    // 3. Görsel artık daha büyük bir alanı kapladığı için sizes prop'unu güncelliyoruz.
+                    sizes="(max-width: 768px) 100vw, 60vw"
+                  />
+                </div>
 
-                <div className="bg-[var(--bg-card)] p-6 rounded-2xl border border-[var(--border-primary)] shadow-lg flex flex-col justify-center hover:shadow-xl transition-shadow">
+                {/* Metin Konteyneri */}
+                {/* 4. Metin kutusuna 5 sütundan 2'sini veriyoruz (md:col-span-2). */}
+                <div className="bg-[var(--bg-card)] p-6 rounded-2xl border border-[var(--border-primary)] shadow-lg flex flex-col justify-center hover:shadow-xl transition-shadow md:col-span-5">
                   <h3 className="text-xl font-semibold text-[var(--text-primary)] mb-3">
                     {item.title}
                   </h3>
@@ -158,19 +165,6 @@ const SolutionsPage: React.FC = () => {
                   <button className="btn-primary px-5 py-2 rounded-lg font-semibold self-start">
                     {item.button}
                   </button>
-                </div>
-
-                {!isImageOnLeft && (
-                  <div className="relative w-64 h-64 rounded-full flex-shrink-0 overflow-hidden shadow-xl mx-auto md:mx-0">
-                    <Image
-                      src={item.image}
-                      alt={item.title + " İllüstrasyonu"}
-                      fill
-                      style={{ objectFit: 'cover', objectPosition: 'center' }}
-                      sizes="(max-width: 768px) 100vw, 33vw"
-                    />
-                  </div>
-                )}
                 </div>
               </div>
             );
