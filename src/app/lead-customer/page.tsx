@@ -116,21 +116,20 @@ const SolutionsPage: React.FC = () => {
             // Görselin sol tarafta mı sağ tarafta mı olacağını belirle
             const isImageOnLeft = index % 2 === 0; // Çift indexlilerde görsel solda, tek indexlilerde sağda olacak
 
-            return (
+return (
+              // DÜZELTME 2: Grid yapısı basitleştirildi ve boşluklar responsive yapıldı.
               <div
                 key={item.title}
-                // 1. Grid'i 5 sütuna bölüyoruz (md:grid-cols-5).
-                //    Bu, alan dağılımında bize daha fazla esneklik sağlar.
-                // 2. Boşluğu biraz daha artırabiliriz (gap-20).
-                className="grid grid-cols-1 md:grid-cols-10 items-center gap-20"
+                className="grid grid-cols-1 md:grid-cols-10 items-center gap-12 md:gap-20"
               >
-                {/* Görsel Konteyneri */}
+                {/* DÜZELTME 3: Görsel her zaman önce yazılıyor ve `order` ile yeri değiştiriliyor */}
                 <div
                   className={`
-                    relative w-96 h-96 rounded-full flex-shrink-0 overflow-hidden shadow-xl
-                    mx-auto 
-                    md:col-span-5 
-                    ${!isImageOnLeft ? 'md:order-last md:justify-self-end' : 'md:justify-self-start'}
+                    relative w-64 h-64 md:w-96 md:h-96 
+                    rounded-full flex-shrink-0 overflow-hidden shadow-xl
+                    mx-auto
+                    col-span-5
+                    ${!isImageOnLeft ? 'md:order-last' : 'md:order-first'}
                   `}
                 >
                   <Image
@@ -138,19 +137,17 @@ const SolutionsPage: React.FC = () => {
                     alt={item.title + " İllüstrasyonu"}
                     fill
                     style={{ objectFit: 'cover' }}
-                    // 3. Görsel artık daha büyük bir alanı kapladığı için sizes prop'unu güncelliyoruz.
-                    sizes="(max-width: 768px) 100vw, 60vw"
+                    sizes="(max-width: 768px) 60vw, 50vw"
                   />
                 </div>
 
                 {/* Metin Konteyneri */}
-                {/* 4. Metin kutusuna 5 sütundan 2'sini veriyoruz (md:col-span-2). */}
-                <div className="bg-[var(--bg-card)] p-6 rounded-2xl border border-[var(--border-primary)] shadow-lg flex flex-col justify-center hover:shadow-xl transition-shadow md:col-span-5">
+                <div className="text-center md:text-left border border-[var(--border-primary)] shadow-lg p-6 rounded-2xl col-span-5">
                   <h3 className="text-xl font-semibold text-[var(--text-primary)] mb-3">
                     {item.title}
                   </h3>
                   <p className="text-[var(--text-secondary)] mb-6">{item.desc}</p>
-                  <button className="btn-primary px-5 py-2 rounded-lg font-semibold self-start">
+                  <button className="btn-primary px-5 py-2 rounded-lg font-semibold mx-auto md:mx-0">
                     {item.button}
                   </button>
                 </div>
