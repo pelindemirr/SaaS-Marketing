@@ -115,8 +115,8 @@ const Header: React.FC = () => {
           <div className="flex items-center space-x-4">
             <div className="hidden md:flex items-center space-x-4">
               <ThemeToggle />
-              <button className="btn-secondary" onClick={() => router.push("/login")}>Giriş Yap</button>
-              <button className="btn-primary px-6 py-2 rounded-lg">Üyelik oluştur</button>
+              <button className="btn-secondary cursor-pointer" onClick={() => router.push("/login")}>Giriş Yap</button>
+              <button className="btn-primary px-6 py-2 rounded-lg cursor-pointer" onClick={() => router.push("/register")}>Üyelik oluştur</button>
             </div>
             <div className="flex items-center space-x-2 md:hidden">
               <ThemeToggle />
@@ -172,8 +172,8 @@ const Header: React.FC = () => {
               </div>
             ))}
             <div className="pt-4 px-4 space-y-2">
-              <button className="w-full btn-secondary py-2 rounded-lg" onClick={()=> router.push("/login")}>Giriş Yap</button>
-              <button className="w-full btn-primary py-2 rounded-lg">Ücretsiz Dene</button>
+              <button className="w-full btn-secondary py-2 rounded-lg cursor-pointer" onClick={()=> router.push("/login")}>Giriş Yap</button>
+              <button className="w-full btn-primary py-2 rounded-lg cursor-pointer" onClick={() => router.push("/register")}>Üyelik oluştur</button>
             </div>
           </nav>
         </div>

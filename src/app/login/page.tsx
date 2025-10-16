@@ -16,7 +16,6 @@ export default function LoginPage() {
             <div
                 className="w-full max-w-md rounded-2xl shadow-lg p-8 transition-all duration-300"
                 style={{
-                    backgroundColor: "var(--bg-card)",
                     border: "1px solid var(--border-primary)",
                 }}
             >
