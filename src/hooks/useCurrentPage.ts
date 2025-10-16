@@ -18,6 +18,7 @@ export const useCurrentPage = () => {
   if (pathname.includes("/support")) return "support";
   if (pathname.includes("/lead-customer")) return "lead-customer";
   if (pathname.includes("/contact")) return "contact";
+  if (pathname.includes("/login")) return "login";
 
   return "home"; // default
 };
