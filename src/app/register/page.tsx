@@ -87,7 +87,7 @@ export default function CompanyRegister() {
     };
 
     const handleApplicationTypeChange = (type: "Bireysel" | "Kurumsal") => {
-        setCurrentStep(CURRENT_STEP_1);
+        setCurrentStep(0);
         setApplicationType(type);
     };
 
