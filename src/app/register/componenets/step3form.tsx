@@ -4,7 +4,7 @@ import { useState } from "react";
 
 // Form sabitleri
 const CURRENT_STEP = 3;
-const TOTAL_STEPS = 3;
+const TOTAL_STEPS = 4;
 
 // Özellik kategorilerini ve içindeki seçenekleri tanımlayan sabit yapı
 const FEATURES_CONFIG = [

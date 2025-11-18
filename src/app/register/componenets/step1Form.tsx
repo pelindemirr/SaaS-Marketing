@@ -3,7 +3,7 @@
 import { useState } from "react";
 
 // Adım sayacı için kullanılan sabitler
-const TOTAL_STEPS = 3;
+const TOTAL_STEPS = 4;
 const CURRENT_STEP = 1;
 
 export default function Step1Form({ onNext }: { onNext?: () => void }) {

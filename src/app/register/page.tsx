@@ -5,6 +5,7 @@ import { useState, useRef } from "react";
 import Step1Form from "./componenets/step1Form";
 import Step2Form from "./componenets/step2Form"; // Yeni eklenen Step2Form'u kullanacağız
 import Step3Form from "./componenets/step3form";
+import { useRouter } from 'next/navigation';
 
 // Adım sayacı için kullanılan sabitler
 const TOTAL_STEPS = 3;
@@ -13,6 +14,9 @@ const CURRENT_STEP_2 = 2;
 const CURRENT_STEP_3 = 3;
 
 export default function CompanyRegister() {
+
+    const router = useRouter();
+
     const [currentStep, setCurrentStep] = useState(0);
     const [applicationType, setApplicationType] = useState<"Bireysel" | "Kurumsal">("Kurumsal");
     const formRef = useRef<HTMLFormElement>(null);
@@ -92,7 +96,7 @@ export default function CompanyRegister() {
     };
 
     const handleFinish = () => {
-        handleRegister();
+        router.push("/meet");
     }
 
     const progressPercentage = (currentStep / TOTAL_STEPS) * 100;

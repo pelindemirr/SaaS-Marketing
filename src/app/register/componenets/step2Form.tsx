@@ -6,7 +6,7 @@ import { useState, useMemo } from "react";
 // Gerçek uygulamada bu değişkenler CSS dosyanızdan otomatik gelecektir.
 // Varsayılan değerler:
 const CURRENT_STEP = 2;
-const TOTAL_STEPS = 3;
+const TOTAL_STEPS = 4;
 
 // Özellik kategorilerini tanımlayan sabit yapı
 const FEATURES_CONFIG = [

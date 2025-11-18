@@ -20,6 +20,7 @@ export const useCurrentPage = () => {
   if (pathname.includes("/contact")) return "contact";
   if (pathname.includes("/login")) return "login";
   if (pathname.includes("/register")) return "register";
+  if (pathname.includes("/meet")) return "meet";
 
   return "home"; // default
 };
